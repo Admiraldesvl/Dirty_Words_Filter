@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    cout << "Press Q to stop..." << endl;
+    cout << "Enter words to filter. Press Q to stop..." << endl;
     string line;
     map<string,int> words;
     while (getline(cin, line)) {
