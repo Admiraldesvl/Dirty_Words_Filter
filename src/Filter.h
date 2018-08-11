@@ -35,19 +35,20 @@ std::map<std::string,int>split(std::string line){ // Split the line into several
 
 bool isDirty(const std::pair<std::string,int> &words){
     std::string str = words.first;
+    if(str[0] < 'a' || str[0] > 'z'){
+        return false;
+    }
     std::string dir = "src/Dirty_Libraries/en/";
     std::string word;
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
     // All the dirty words stored in library are lowercase, so transform words inputted into lowercase first of all.
-    if (str[0] >= 'a' && str[0] <= 'z') {
-        dir.push_back(str[0]); // Words will be checked in the respective file with same first letter.
-        std::ifstream iFile;
-        iFile.open(dir);
-        while (iFile) {
-            getline(iFile, word);
-            if (word == str) {
-                return true; // Once found, the word to be checked is dirty confirmed. return true to terminate.
-            }
+    dir.push_back(str[0]); // Words will be checked in the respective file with same first letter.
+    std::ifstream iFile;
+    iFile.open(dir);
+    while (iFile) {
+        getline(iFile, word);
+        if (word == str) {
+            return true; // Once found, the word to be checked is dirty confirmed. return true to terminate.
         }
     }
     return false;
