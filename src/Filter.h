@@ -33,7 +33,7 @@ std::map<std::string,int>split(std::string line){ // Split the line into several
     return result;
 }
 
-bool isDirty(std::pair<std::string,int> words){
+bool isDirty(const std::pair<std::string,int> &words){
     std::string str = words.first;
     std::string dir = "src/Dirty_Libraries/en/";
     std::string word;
@@ -63,7 +63,7 @@ bool dirtyList(std::map<std::string,int> &words){
     return !words.empty();
 }
 
-void filter(std::map<std::string,int> words,std::string &line){
+void filter(const std::map<std::string,int> &words,std::string &line){
     for (const auto &pair:words) {
         // pair.second is the position of each words. Since all the words remaining is dirty,
         // we transform them into asterisks one by one.
@@ -72,5 +72,13 @@ void filter(std::map<std::string,int> words,std::string &line){
         }
     }
 }
-
+bool isPureUpper(const std::map<std::string,int> &words){
+    for(const auto &pair : words){
+        for(const auto &i : pair.first){
+            if(!(isupper(i) || i == 39 || i == 45)) // If any character is not uppercase/'''/'-', return false.
+                return false;
+        }
+    }
+    return true;
+}
 #endif //FILTER_FILTER_H
