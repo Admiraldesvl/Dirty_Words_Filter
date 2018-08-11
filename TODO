@@ -1,2 +1,3 @@
 1. Enable to support multi words
 2. Enable to support other languages.
+3. BUG TO BE FIXED: if several same dirty words are inputted, only the first one can be blocked.
